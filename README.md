@@ -10,6 +10,8 @@ Tipos de conta: Conta corrente(cc) e Poupança(cp)
 Bônus para abertura de conta : cc - R$12,00 / cp - R$20,00
 Encerrar conta: Sacar antes todo saldo ou depositar para cobrir saldo devedor.
 
-## O que falta fazer:
-- Formatar moeda em R$;
-- Inserir horário das operações;
+## Implementações:
+[x] Formatar moeda em R$
+Introduzida classe NumberFormatter
+
+[ ] Exibir horário das operações financeiras;

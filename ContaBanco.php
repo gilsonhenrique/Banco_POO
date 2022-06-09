@@ -27,6 +27,17 @@ class ContaBanco {
 	}
 
 
+//  Formatar moeda em R$
+
+	public function formatar($valor) {
+	
+		$numberFmt = new \NumberFormatter('pt-BR',\NumberFormatter::CURRENCY);
+		$valor = $numberFmt->format($valor);
+		return $valor;
+	
+		}
+
+
 //  Abrir conta
 
 	public function abrirConta($n, $tc) {
@@ -48,22 +59,34 @@ class ContaBanco {
 
 		}
 
+		// Exibindo valores
+
+		$saldo = ContaBanco::formatar($this->saldo);
+		
 		echo "Parabéns Sr(a): $this->nome , conta gerada com sucesso!"."<br>".
 		"Dados:"."<br>".
 		"Nome:  $this->nome"."<br>".
 		"Tipo: $this->tipoConta"."<br>".
 		"Conta nº: $this->numeroConta"."<br>". 
-		"Saldo: $this->saldo"."<hr>";
+		"Saldo: ".$saldo."<hr>";
+
 	}
+
 
 //  Fazer um Depósito
 
 	public function depositar($valor) {
 
 		$this->saldo = $this->saldo + $valor;
+
+		// Exibindo valores
+
+		$valor = ContaBanco::formatar($valor);
+		$saldo = ContaBanco::formatar($this->saldo);
+		
 		echo "Depósito efetuado com Sucesso"."<br>".
 		     "Depósito: ".$valor."<br>".
-		     "Saldo Atual: $this->saldo"."<hr>";
+		     "Saldo Atual: ".$saldo."<hr>";
 	}
 
 //  Fazer um Saque
@@ -72,14 +95,25 @@ class ContaBanco {
 
 		if ($valor > $this->saldo) {
 
+			// Exibindo valores
+
+			$valor = ContaBanco::formatar($valor);	
+			$saldo = ContaBanco::formatar($this->saldo);
+
 			echo "Saldo insuficiente!"."<br>".
-			     "saldo atual: $this->saldo"."<hr>";
+			     "saldo atual: ".$saldo."<hr>";
 		}else{
 
 			$this->saldo = $this->saldo - $valor;
+
+			// Exibindo valores			
+
+			$valor = ContaBanco::formatar($valor);
+			$saldo = ContaBanco::formatar($this->saldo);
+
 			echo "Saque efetuado com Sucesso"."<br>".
 			     "Saque: ".$valor."<br>".
-			     "Saldo Atual: $this->saldo"."<hr>";
+			     "Saldo Atual: ".$saldo."<hr>";
 
 			     }
 
