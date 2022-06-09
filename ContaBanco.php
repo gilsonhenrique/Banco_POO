@@ -53,7 +53,36 @@ class ContaBanco {
 		"Nome:  $this->nome"."<br>".
 		"Tipo: $this->tipoConta"."<br>".
 		"Conta nº: $this->numeroConta"."<br>". 
-		"Saldo: $this->saldo"."<br>";
+		"Saldo: $this->saldo"."<hr>";
+	}
+
+//  Fazer um Depósito
+
+	public function depositar($valor) {
+
+		$this->saldo = $this->saldo + $valor;
+		echo "Depósito efetuado com Sucesso"."<br>".
+		     "Depósito: ".$valor."<br>".
+		     "Saldo Atual: $this->saldo"."<hr>";
+	}
+
+//  Fazer um Saque
+
+	public function sacar($valor) {
+
+		if ($valor > $this->saldo) {
+
+			echo "Saldo insuficiente!"."<br>".
+			     "saldo atual: $this->saldo"."<hr>";
+		}else{
+
+			$this->saldo = $this->saldo - $valor;
+			echo "Saque efetuado com Sucesso"."<br>".
+			     "Saque: ".$valor."<br>".
+			     "Saldo Atual: $this->saldo"."<hr>";
+
+			     }
+
 	}
 
 };
@@ -61,10 +90,14 @@ class ContaBanco {
 
 $cliente1 = new ContaBanco();
 
-
 // Testando
 
 $cliente1->abrirConta("Fulano da Silva", "cc");
+$cliente1->depositar(10);
+$cliente1->sacar(5);
+$cliente1->sacar(18);
+$cliente1->sacar(17);
+$cliente1->depositar(100);
 
 // Debug
 //var_dump($cliente1);
