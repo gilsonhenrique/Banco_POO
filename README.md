@@ -14,4 +14,6 @@ Encerrar conta: Sacar antes todo saldo ou depositar para cobrir saldo devedor.
 [x] Formatar moeda em R$
 Introduzida classe NumberFormatter
 
+[ ] Inserir limite para uso com o saldo negativo
+
 [ ] Exibir horário das operações financeiras;

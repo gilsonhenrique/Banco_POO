@@ -77,6 +77,12 @@ class ContaBanco {
 
 	public function depositar($valor) {
 
+		if($this->status === false) {
+
+			echo "Conta encerrada ou inexistente! Impossível depositar"."<hr>";
+			die;
+		}
+
 		$this->saldo = $this->saldo + $valor;
 
 		// Exibindo valores
@@ -92,6 +98,12 @@ class ContaBanco {
 //  Fazer um Saque
 
 	public function sacar($valor) {
+
+		if($this->status === false) {
+
+			echo "Conta encerrada ou inexistente! Impossível sacar"."<hr>";
+			die;
+		}
 
 		if ($valor > $this->saldo) {
 
@@ -115,7 +127,34 @@ class ContaBanco {
 			     "Saque: ".$valor."<br>".
 			     "Saldo Atual: ".$saldo."<hr>";
 
-			     }
+		}
+
+	}
+
+
+// Encerrar a Conta
+
+	public function encerrar() {
+
+		if($this->saldo < 0) {
+
+			$valor = ContaBanco::formatar($this->saldo);
+
+			echo "É necessário quitar o saldo devedor de: ".$valor."<hr>";
+
+		}elseif($this->saldo > 0){
+
+			$valor = ContaBanco::formatar($this->saldo);
+
+			echo "É necessário antes, fazer um saque de: ".$valor."<hr>";			
+
+		}else{
+
+			echo "Conta encerrada com Sucesso!"."<hr>";
+
+			$this->status = false;
+
+		}
 
 	}
 
@@ -132,6 +171,12 @@ $cliente1->sacar(5);
 $cliente1->sacar(18);
 $cliente1->sacar(17);
 $cliente1->depositar(100);
+$cliente1->encerrar();
+$cliente1->sacar(100);
+$cliente1->encerrar();
 
-// Debug
-//var_dump($cliente1);
+
+//Debug
+var_dump($cliente1);
+$cliente1->sacar(5);// um ou outro
+//$cliente1->depositar(10);// um ou outro
